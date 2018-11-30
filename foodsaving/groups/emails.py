@@ -84,10 +84,10 @@ def calculate_group_summary_dates(group):
         tz = get_current_timezone()
 
         # midnight last night in the groups local timezone
-        midnight = tz.localize(timezone.now().replace(tzinfo=None, hour=0, minute=0, second=0, microsecond=0))
+        midnight = tz.localize(timezone.utcnow().replace(tzinfo=tzutc(), hour=0, minute=0, second=0, microsecond=0))
 
         # 7 days before that
-        from_date = midnight - relativedelta(days=7)
+        from_date = midnight - relativedelta(days=6)
 
         # a week after from date
         to_date = from_date + relativedelta(days=7)
